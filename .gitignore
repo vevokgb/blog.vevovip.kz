@@ -7,6 +7,8 @@ nbproject
 .buildpath
 .project
 .settings
+.ssh
+.vblog
 
 # windows thumbnail cacheT
 Thumbs.db
