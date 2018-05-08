@@ -143,7 +143,10 @@ class ArticleController extends Controller
             $article = $this->findModel($id);
             $file = UploadedFile::getInstance($model, 'image');
 
-            $article->saveImage($model->uploadFile($file, $article->image));
+            # после загрузки перекинуть пользвтаеля на action view
+            if ($article->saveImage($model->uploadFile($file, $article->image))) {
+                return $this->redirect(['view', 'id' => $article->id]);
+            }
         }
 
         return $this->render('image', ['model' => $model]);
