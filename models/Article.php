@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "article".
@@ -21,7 +22,7 @@ use Yii;
  * @property ArticleTag[] $articleTags
  * @property Comment[] $comments
  */
-class Article extends \yii\db\ActiveRecord
+class Article extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -65,18 +66,13 @@ class Article extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @param $filename
+     * @return bool
+     * get filename
      */
-    public function getArticleTags()
+    public function saveImage($filename)
     {
-        return $this->hasMany(ArticleTag::className(), ['article_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getComments()
-    {
-        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
+        $this->image = $filename;
+        return $this->save(false);
     }
 }

@@ -130,9 +130,21 @@ class ArticleController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
     public function actionSetImage($id)
     {
         $model = new ImageUpload;
+
+        if (Yii::$app->request->post()) {
+
+            $article = $this->findModel($id);
+            $file = UploadedFile::getInstance($model, 'image');
+
+            $article->saveImage($model->uploadFile($file, $article->image));
+        }
 
         return $this->render('image', ['model' => $model]);
     }
