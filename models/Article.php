@@ -77,6 +77,15 @@ class Article extends ActiveRecord
     }
 
     /**
+     * Ввывести картинку в листинге
+     * @return string
+     */
+    public function getImage()
+    {
+        return ($this->image) ? '/uploads/' . $this->image : '/no-image.png';
+    }
+
+    /**
      * Удаление картинки в модели статьи
      */
     public function deleteImage()

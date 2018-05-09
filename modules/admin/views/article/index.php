@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -31,6 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'content:ntext',
             'date',
+            [
+                'format' => 'html',
+                'label' => 'Image',
+                'value' => function ($data) {
+                    return html::img($data->getImage(), ['width' => 200]);
+                }
+            ],
             //'image',
             //'viewed',
             //'user_id',
