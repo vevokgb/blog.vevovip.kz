@@ -180,7 +180,19 @@ class ArticleController extends Controller
     # добавление тегов
     public function actionSetTags($id)
     {
-        $tag = Tag::findOne(1);
-        var_dump($tag->articles);
+        $article = $this->findModel($id);
+        $selectedTags = $article->getSelectedTags(); //
+        $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+
+        if (Yii::$app->request->isPost) {
+            $tags = Yii::$app->request->post('tags');
+            $article->saveTags($tags);
+            return $this->redirect(['view', 'id' => $article->id]);
+        }
+
+        return $this->render('tags', [
+            'selectedTags' => $selectedTags,
+            'tags' => $tags
+        ]);
     }
 }
