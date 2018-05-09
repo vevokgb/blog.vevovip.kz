@@ -170,11 +170,17 @@ class ArticleController extends Controller
             }
         }
 
-
         return $this->render('category', [
             'article' => $article,
             'selectedCategory' => $selectedCategory,
             'categories' => $categories,
         ]);
+    }
+
+    # добавление тегов
+    public function actionSetTags($id)
+    {
+        $tag = Tag::findOne(1);
+        var_dump($tag->articles);
     }
 }
