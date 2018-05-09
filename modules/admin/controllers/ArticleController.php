@@ -152,9 +152,16 @@ class ArticleController extends Controller
         return $this->render('image', ['model' => $model]);
     }
 
+    /**
+     * Получаем доступ к модели
+     * @param $id
+     * @return string
+     */
     public function actionSetCategory($id)
     {
         $article = $this->findModel($id);
-        var_dump($article->category->title);
+        return $this->render('category', [
+            'article' => $article,
+        ]);
     }
 }
