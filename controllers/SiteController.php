@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Article;
+use app\models\Category;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -63,27 +64,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        // build a DB query to get all articles with status = 1
-        $query = Article::find();
-
-        // get the total number of articles (but do not fetch the article data yet)
-        $count = $query->count();
-
-        // create a pagination object with the total count
-        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 1]);
-
-        // limit the query using the pagination and retrieve the articles
-        $articles = $query->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
-
+        # Вывод всех статей
+        $data = Article::getAll(1);
         # Вывод популярных статей в сайдбаре
-        $popular = Article::find()->orderBy('viewed desc')->all();
+        $popular = Article::getPopular();
+        # Вывод последних статей
+        $recent = Article::getRecent();
+        # Вывод всех категорий
+        $categories = Category::getAll();
 
         return $this->render('index', [
-            'articles' => $articles,
-            'pagination' => $pagination,
+            'articles' => $data['articles'],
+            'pagination' => $data['pagination'],
             'popular' => $popular,
+            'recent' => $recent,
+            'categories' => $categories,
         ]);
     }
 
@@ -150,7 +145,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Cтарница одной статьи
+     * Страница одной статьи
      * @return string
      */
     public function actionView()

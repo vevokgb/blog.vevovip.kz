@@ -53,9 +53,11 @@ use yii\widgets\LinkPager;
                 ?>
                 <!-- End Pagination-->
             </div>
+
             <div class="col-md-4" data-sticky_column>
                 <div class="primary-sidebar">
 
+                    <!-- блок популярные статьи-->
                     <aside class="widget">
                         <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
 
@@ -74,101 +76,46 @@ use yii\widgets\LinkPager;
 
                                 </div>
                             </div>
-                            <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </aside>
+                    <!-- конец блока популярные статьи-->
+
+                    <!-- последние статьи-->
                     <aside class="widget pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Recent Posts</h3>
 
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
+                        <?php foreach ($recent as $article) : ?>
+                            <div class="thumb-latest-posts">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#" class="popular-img"><img src="<?= $article->getImage(); ?>" alt="">
+                                            <div class="p-overlay"></div>
+                                        </a>
+                                    </div>
+                                    <div class="p-content">
+                                        <a href="#" class="text-uppercase"><?= $article->title; ?></a>
+                                        <span class="p-date"><?= $article->getDate(); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </aside>
+                    <!-- конец блока последние статьи-->
+
+                    <!-- блок категорий-->
                     <aside class="widget border pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Categories</h3>
                         <ul>
-                            <li>
-                                <a href="#">Food & Drinks</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Travel</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Business</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Story</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">DIY & Tips</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Lifestyle</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
+                            <?php foreach ($categories as $category) : ?>
+                                <li>
+                                    <a href="#"><?= $category->title; ?></a>
+                                    <span class="post-count pull-right"> <?= $category->getArticlesCount(); ?></span>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </aside>
+                    <!-- конец блока категорий-->
+
                 </div>
             </div>
         </div>

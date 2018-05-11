@@ -51,4 +51,21 @@ class Category extends ActiveRecord
         return $this->hasMany(Article::className(), ['category_id' => 'id']);
     }
 
+    /**
+     * Получение количества статей
+     * @return int|string
+     */
+    public function getArticlesCount()
+    {
+        return $this->getArticles()->count();
+    }
+
+    /**
+     * Получение всех категорий
+     * @return array|ActiveRecord[]
+     */
+    public static function getAll()
+    {
+        return Category::find()->all();
+    }
 }

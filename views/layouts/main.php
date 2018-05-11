@@ -83,11 +83,11 @@ PublicAsset::register($this);
                     <div class="address">
                         <h4 class="text-uppercase">contact Info</h4>
 
-                        <p> 14529/12 NK Streets, DC, KZ</p>
+                        <p> </p>
 
-                        <p> Phone: +123 456 78900</p>
+                        <p> </p>
 
-                        <p>mytreasure.com</p>
+                        <p> </p>
                     </div>
                 </aside>
             </div>
@@ -188,8 +188,7 @@ PublicAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-center">&copy; 2015 <a href="#">Treasure PRO, </a> Built with <i
-                                class="fa fa-heart"></i> by <a href="#">Rahim</a>
+                    <div class="text-center">&copy; 2018 Built with <a href="https://hox.kz">HOX.KZ</a>
                     </div>
                 </div>
             </div>
