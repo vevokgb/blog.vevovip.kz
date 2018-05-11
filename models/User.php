@@ -62,9 +62,14 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(Comment::className(), ['user_id' => 'id']);
     }
 
+    /**
+     * Возвращает пользователя по id
+     * @param int|string $id
+     * @return null|static
+     */
     public static function findIdentity($id)
     {
-        // TODO: Implement findIdentity() method.
+        return User::findOne($id);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
@@ -72,9 +77,12 @@ class User extends ActiveRecord implements IdentityInterface
         // TODO: Implement findIdentityByAccessToken() method.
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
-        // TODO: Implement getId() method.
+        return $this->id;
     }
 
     public function getAuthKey()
@@ -85,5 +93,25 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         // TODO: Implement validateAuthKey() method.
+    }
+
+    /**
+     * Вытаскиваем пользователя
+     * @param $username
+     * @return array|null|ActiveRecord
+     */
+    public function findByUsername($username)
+    {
+        return User::find()->where(['name' => $username])->one();
+    }
+
+    /**
+     * Проверяем пароли
+     * @param $password
+     * @return bool
+     */
+    public function validatePassword($password)
+    {
+        return ($this->password == $password) ? true : false;
     }
 }

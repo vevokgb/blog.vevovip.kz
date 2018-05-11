@@ -27,7 +27,7 @@ Class AuthController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
+        return $this->render('/site/login', [
             'model' => $model,
         ]);
     }
@@ -47,6 +47,6 @@ Class AuthController extends Controller
     public function actionTest()
     {
         $user = User::findOne(1);
-        Yii::$app->user->login($user);
+        Yii::$app->user->logout($user);
     }
 }
