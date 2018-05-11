@@ -146,15 +146,44 @@ class SiteController extends Controller
 
     /**
      * Страница одной статьи
+     * @param $id
      * @return string
      */
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('single');
+        # Получить из базы статью
+        $article = Article::findOne($id);
+        # Вывод популярных статей в сайдбаре
+        $popular = Article::getPopular();
+        # Вывод последних статей
+        $recent = Article::getRecent();
+        # Вывод всех категорий
+        $categories = Category::getAll();
+
+        return $this->render('single', [
+            'article' => $article,
+            'popular' => $popular,
+            'recent' => $recent,
+            'categories' => $categories,
+        ]);
     }
 
-    public function actionCategory()
+    public function actionCategory($id)
     {
-        return $this->render('category');
+        $data = Category::getArticlesByCategory($id);
+        # Вывод популярных статей в сайдбаре
+        $popular = Article::getPopular();
+        # Вывод последних статей
+        $recent = Article::getRecent();
+        # Вывод всех категорий
+        $categories = Category::getAll();
+
+        return $this->render('category', [
+            'articles' => $data['articles'],
+            'pagination' => $data['pagination'],
+            'popular' => $popular,
+            'recent' => $recent,
+            'categories' => $categories,
+        ]);
     }
 }
