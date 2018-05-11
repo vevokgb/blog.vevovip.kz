@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\LoginForm;
+use app\models\User;
 use Yii;
 use yii\web\Controller;
 
@@ -36,8 +37,7 @@ Class AuthController extends Controller
      *
      * @return Response
      */
-    public
-    function actionLogout()
+    public function actionLogout()
     {
         Yii::$app->user->logout();
 
@@ -46,6 +46,7 @@ Class AuthController extends Controller
 
     public function actionTest()
     {
-        var_dump(Yii::$app->user->);
+        $user = User::findOne(1);
+        Yii::$app->user->login($user);
     }
 }
