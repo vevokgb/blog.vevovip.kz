@@ -16,7 +16,16 @@ Class SignupForm extends Model
             [['name', 'email', 'password'], 'required'],
             [['name'], 'string'],
             [['email'], 'email'],
-            [['email'], 'unique', 'targetCLass' => 'app\models\User', 'targetAttribute' => 'email'],
+            [['email'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'email'],
         ];
+    }
+
+    public function signup()
+    {
+        if ($this->validate()) {
+            $user = new User();
+            $user->attributes = $this->attributes;
+            return $user->create();
+        }
     }
 }

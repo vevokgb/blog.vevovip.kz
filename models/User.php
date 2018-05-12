@@ -95,14 +95,15 @@ class User extends ActiveRecord implements IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
+
     /**
      * Вытаскиваем пользователя
-     * @param $username
+     * @param $email
      * @return array|null|ActiveRecord
      */
-    public function findByUsername($username)
+    public static function findByEmail($email)
     {
-        return User::find()->where(['name' => $username])->one();
+        return User::find()->where(['email' => $email])->one();
     }
 
     /**
@@ -113,5 +114,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function validatePassword($password)
     {
         return ($this->password == $password) ? true : false;
+    }
+
+    public function create()
+    {
+        return $this->save(false);
     }
 }
