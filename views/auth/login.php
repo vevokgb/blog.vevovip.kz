@@ -50,5 +50,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
+
+        <div class="col-md-2">
+            <script type="text/javascript" src="//vk.com/js/api/openapi.js?154"></script>
+            <script type="text/javascript">
+                VK.init({apiId: 6311939});
+            </script>
+
+            <!-- VK Widget -->
+            <div id="vk_auth"></div>
+            <script type="text/javascript">
+                VK.Widgets.Auth("vk_auth", {"authUrl": "/auth/login-vk"});
+            </script>
+        </div>
     </div>
 </div>
