@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\LoginForm;
+use app\models\SignupForm;
 use app\models\User;
 use Yii;
 use yii\web\Controller;
@@ -27,7 +28,7 @@ Class AuthController extends Controller
         }
 
         $model->password = '';
-        return $this->render('/site/login', [
+        return $this->render('login', [
             'model' => $model,
         ]);
     }
@@ -42,6 +43,15 @@ Class AuthController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    /**
+     * @return string
+     */
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        return $this->render('signup', ['model' => $model]);
     }
 
     public function actionTest()
