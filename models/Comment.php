@@ -19,6 +19,9 @@ use yii\db\ActiveRecord;
  */
 class Comment extends ActiveRecord
 {
+    const STATUS_ALLOW = 1;
+    const STATUS_DISALLOW = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -76,5 +79,34 @@ class Comment extends ActiveRecord
     public function getDate()
     {
         return Yii::$app->formatter->asDate($this->date);
+    }
+
+    /**
+     * Проверка статуса комментария
+     * @return int
+     */
+    public function isAllowed()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Разрешить комментарий
+     * @return bool
+     */
+    public function allow()
+    {
+        $this->status = self::STATUS_ALLOW;
+        return $this->save(false);
+    }
+
+    /**
+     * Запретить комментарий
+     * @return bool
+     */
+    public function disallow()
+    {
+        $this->status = self::STATUS_DISALLOW;
+        return $this->save(false);
     }
 }

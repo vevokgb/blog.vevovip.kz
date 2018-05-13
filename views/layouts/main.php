@@ -199,7 +199,7 @@ PublicAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-center">&copy; 2018 Built with <a href="https://hox.kz">HOX.KZ</a>
+                    <div class="text-center">&copy; Built with <a href="https://hox.kz">HOX.KZ</a> <?= date('Y') ?>
                     </div>
                 </div>
             </div>
