@@ -125,8 +125,7 @@ class SiteController extends Controller
         $recent = Article::getRecent();
         # Вывод всех категорий
         $categories = Category::getAll();
-
-        $comments = $article->comments;
+        $comments = $article->getArticleComments();
         $commentForm = new CommentForm();
 
         return $this->render('single', [
@@ -169,6 +168,7 @@ class SiteController extends Controller
         if (Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->post());
             if ($model->saveComment($id)) {
+                Yii::$app->getSession()->setFlash('comment', 'Your comment will be added soon!');
                 return $this->redirect(['site/view', 'id' => $id]);
             }
         }

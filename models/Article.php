@@ -225,4 +225,13 @@ class Article extends ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
+
+    /**
+     * Вывод только подтвержденных комментариев
+     * @return array|ActiveRecord[]
+     */
+    public function getArticleComments()
+    {
+        return $this->getComments()->where(['status' => 1])->all();
+    }
 }

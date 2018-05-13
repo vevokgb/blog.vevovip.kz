@@ -70,6 +70,9 @@ class Comment extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @return string
+     */
     public function getDate()
     {
         return Yii::$app->formatter->asDate($this->date);
