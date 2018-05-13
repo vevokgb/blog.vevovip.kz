@@ -216,4 +216,13 @@ class Article extends ActiveRecord
         $this->user_id = Yii::$app->user->id;
         return $this->save();
     }
+
+    /**
+     * Получить комментарии
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
+    }
 }
