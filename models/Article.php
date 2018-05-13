@@ -234,4 +234,23 @@ class Article extends ActiveRecord
     {
         return $this->getComments()->where(['status' => 1])->all();
     }
+
+    /**
+     * Связь с пользователями
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthor()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Количество просмотров статьи
+     * @return bool
+     */
+    public function viewedCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
 }
