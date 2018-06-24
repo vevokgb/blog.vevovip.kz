@@ -17,13 +17,12 @@
                                             <input type="text" placeholder="Search and hit enter..." name="s" id="s"/>
                                         </div>
                                     </form>
-                                    <p class="go-back-home"><a href="index.html">
+                                    <p class="go-back-home"><a href="/">
                                             Back to Home Page</a></p>
                                 </div>
                             </div>
 
                         </section><!-- .error-404 -->
-
                     </main><!-- #main -->
                 </div><!-- #primary -->
             </div>
